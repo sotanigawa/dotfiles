@@ -42,7 +42,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
-(defvar my/packages '(helm init-loader))
+(defvar my/packages '(helm ddskk doom-themes init-loader))
 (dolist (package my/packages)
   (unless (package-installed-p package)
     (package-install package)))
@@ -58,6 +58,22 @@
 (define-key global-map (kbd "M-y") 'helm-show-kill-ring)
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
+
+;;; DDSKK
+(setq skk-user-directory (locate-user-emacs-file "share/ddskk"))
+(let ((l "/usr/share/skk/SKK-JISYO.L"))
+  (when (file-exists-p l) (setq skk-large-jisyo l)))
+(setq skk-dcomp-activate t)
+(setq skk-cursor-hiragana-color "pink")
+(global-set-key "\C-xj" 'skk-mode)
+
+;;; Doom-Themes
+(use-package doom-themes
+  :custom
+  (doom-themes-enable-italic t)
+  (doom-themes-enable-bold t)
+  :config
+  (load-theme 'doom-dracula t))
 
 ;;; Init-Loader
 (setq init-loader-show-log-after-init 'error-only)
