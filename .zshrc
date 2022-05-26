@@ -6,7 +6,7 @@ export LESSHISTFILE=-
 export EDITOR=vi
 export PAGER=less
 export GOPATH=$HOME/.go
-path=($HOME/bin(N-/) $path)
+path=($HOME/bin(N-/) $HOME/.local/bin(N-/) $path)
 
 autoload -Uz compinit
 compinit -d ~/.zcompdump
