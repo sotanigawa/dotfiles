@@ -48,7 +48,7 @@
     (package-install package)))
 
 ;;; Helm
-(setq recentf-save-file (locate-user-emacs-file "var/helm/.recentf"))
+(setq recentf-save-file (locate-user-emacs-file "share/helm/.recentf"))
 (setq recentf-max-saved-items 1000)
 (helm-mode 1)
 (define-key global-map (kbd "C-x b")   'helm-for-files)
