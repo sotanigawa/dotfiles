@@ -52,6 +52,10 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
+(defvar my/packages '(helm init-loader))
+(dolist (package my/packages)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ;;; Helm
 (helm-mode 1)
