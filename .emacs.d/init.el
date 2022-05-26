@@ -53,24 +53,7 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
-;;; El-get
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (let (el-get-master-branch)
-      (goto-char (point-max))
-      (eval-print-last-sexp))))
-(when load-file-name
-  (setq user-emacs-directory (file-name-directory load-file-name)))
-(require 'el-get)
-(setq el-get-dir (locate-user-emacs-file "packages"))
-
 ;;; Helm
-(el-get-bundle helm)
-(require 'helm)
-(require 'helm-config)
 (helm-mode 1)
 (setq recentf-save-file (locate-user-emacs-file "var/helm/.recentf"))
 (setq recentf-max-saved-items 1000)
@@ -83,8 +66,6 @@
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 
 ;;; Init loader
-(el-get-bundle init-loader)
-(require 'init-loader)
 (setq init-loader-show-log-after-init 'error-only)
 (init-loader-load (locate-user-emacs-file "inits"))
 
