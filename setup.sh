@@ -13,7 +13,7 @@ do
     if [ "`readlink $dest`" = $src ]; then
         echo -n '[ok] '
     else
-        if [ ! $1 = 'test' ]; then
+        if [ ! "$1" = 'test' ]; then
             mkdir -pv `dirname $dest`
             ln -snfi $src $dest
         fi
