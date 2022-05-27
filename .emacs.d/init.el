@@ -42,7 +42,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
-(defvar my/packages '(helm ddskk doom-themes init-loader))
+(defvar my/packages '(helm ddskk use-package doom-themes init-loader))
 (dolist (package my/packages)
   (unless (package-installed-p package)
     (package-install package)))
@@ -76,5 +76,7 @@
   (load-theme 'doom-dracula t))
 
 ;;; Init-Loader
-(setq init-loader-show-log-after-init 'error-only)
-(init-loader-load (locate-user-emacs-file "inits"))
+(let ((inits (locate-user-emacs-file "inits")))
+  (when (file-directory-p inits)
+    (setq init-loader-show-log-after-init 'error-only)
+    (init-loader-load inits)))
