@@ -1,25 +1,7 @@
-if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
-    zcompile ~/.zshrc
-fi
-
-export LESSHISTFILE=-
-export EDITOR=vi
-export PAGER=less
-export GOPATH=$HOME/.go
-path=($HOME/bin(N-/) $HOME/.local/bin(N-/) $path)
-
-autoload -Uz compinit
-compinit -d ~/.zcompdump
-autoload -Uz colors
-colors
+autoload -Uz compinit; compinit -d ~/.zcompdump
+autoload -Uz colors; colors
 
 bindkey -e
-
-HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
-PROMPT='[%~]%# '
-RPROMPT='[%?]'
 
 setopt auto_cd
 setopt auto_pushd
@@ -41,9 +23,18 @@ alias sudo='sudo '
 alias q='exit'
 alias -g L="| less"
 alias -g G='| grep'
-alias xcopy='xclip -selection clipboard'
 
-# Using fzf to search history
+export LESSHISTFILE=-
+export EDITOR=vi
+export PAGER=less
+
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+PROMPT='[%~]%# '
+RPROMPT='[%?]'
+
+# Use fzf to search history
 if type fzf > /dev/null 2>&1; then
     alias fzf='fzf --ansi'
     function select-history() {
@@ -57,8 +48,15 @@ if type fzf > /dev/null 2>&1; then
     bindkey '^r' select-history
 fi
 
+# Use pure prompt if exists
 if [ -d ~/.zsh/pure ]; then
     fpath+=$HOME/.zsh/pure
     autoload -U promptinit; promptinit
     prompt pure
 fi
+
+# Load .zshrc.local if exists
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# Compile .zshrc
+[ ~/.zshrc -nt ~/.zshrc.zwc ] && zcompile ~/.zshrc
