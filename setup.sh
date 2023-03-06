@@ -8,7 +8,7 @@ DOT_FILES=(
 
 for file in ${DOT_FILES[@]}
 do
-    src=~/dotfiles/$file
+    src=$(cd $(dirname $0); pwd)/$file
     dest=~/$file
     if [ "`readlink $dest`" = $src ]; then
         echo -n '[ok] '
