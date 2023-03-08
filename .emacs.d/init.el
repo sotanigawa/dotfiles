@@ -10,7 +10,6 @@
 (setq-default line-spacing 1)
 (setq-default indent-tabs-mode nil)
 (setq-default show-trailing-whitespace t)
-(setq require-final-newline nil)
 (setq backup-directory-alist
       `((".*" . ,(locate-user-emacs-file "var/backup"))))
 (setq auto-save-file-name-transforms
