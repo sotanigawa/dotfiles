@@ -1,7 +1,11 @@
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+PROMPT='[%~]%# '
+RPROMPT='[%?]'
+
 autoload -Uz compinit; compinit -d ~/.zcompdump
 autoload -Uz colors; colors
-
-bindkey -e
 
 setopt auto_cd
 setopt auto_pushd
@@ -21,42 +25,19 @@ alias rm='rm -i'
 alias mkdir='mkdir -p'
 alias sudo='sudo '
 alias q='exit'
-alias -g L="| less"
+alias -g L='| less'
 alias -g G='| grep'
+alias fzf='fzf --ansi'
 
-export LESSHISTFILE=-
-export EDITOR=vi
-export PAGER=less
+bindkey -e
 
-HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
-PROMPT='[%~]%# '
-RPROMPT='[%?]'
-
-# Use fzf to search history
 if type fzf > /dev/null 2>&1; then
-    alias fzf='fzf --ansi'
     function select-history() {
-        BUFFER=$(history -n -r 1 |\
-                     fzf --no-sort +m\
-                         --query "$LBUFFER"\
-                         --prompt="History > ")
+        BUFFER=$(history -n -r 1 | fzf +s +m -q "$LBUFFER")
         CURSOR=$#BUFFER
     }
     zle -N select-history
     bindkey '^r' select-history
 fi
 
-# Use pure prompt if exists
-if [ -d ~/.zsh/pure ]; then
-    fpath+=$HOME/.zsh/pure
-    autoload -U promptinit; promptinit
-    prompt pure
-fi
-
-# Load .zshrc.local if exists
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
-# Compile .zshrc
-[ ~/.zshrc -nt ~/.zshrc.zwc ] && zcompile ~/.zshrc
+() { [ $1 -nt $1.zwc ] && zcompile $1 } ${(%):-%N}
