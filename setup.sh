@@ -1,23 +1,44 @@
 #!/bin/sh
 
-DOT_FILES=(
-    .emacs.d/init.el
-    .gitconfig
-    .zshrc
-)
+[[ "$1" = "exec" ]] && exec=true || exec=false
+echo "execution is $exec"
 
-for file in ${DOT_FILES[@]}
-do
-    src=$(cd $(dirname $0); pwd)/$file
-    dest=~/$file
-    if [ "`readlink $dest`" = $src ]; then
-        echo -n '[ok] '
-    else
-        if [ ! "$1" = 'test' ]; then
+function create_dotfiles_symlinks () {
+    srcdir=$(cd $(dirname $0); pwd)
+    files=(
+        .emacs.d/init.el
+        .gitconfig
+        .zshrc
+    )
+    for file in ${files[@]};
+    do
+        src=$srcdir/$file
+        dest=~/$file
+        if [[ `readlink $dest` = $src ]]; then
+            echo "[already linked correctly] $dest -> $src"
+            continue
+        fi
+        if $exec; then
             mkdir -pv `dirname $dest`
             ln -snfi $src $dest
         fi
-        echo -n '[ln] '
+        echo "[new link] $dest -> $src"
+    done
+}
+
+function download_ranger_configuration () {
+    src=https://raw.githubusercontent.com/ranger/ranger/master/examples/rc_emacs.conf
+    dest=~/.config/ranger/rc.conf
+    if [[ -e $dest ]]; then
+        echo "[already exists] $dest"
+        return
     fi
-    echo "$dest -> $src"
-done
+    if $exec; then
+        mkdir -pv `dirname $dest`
+        curl $src -o $dest
+    fi
+    echo "[download] $src -> $dest"
+}
+
+create_dotfiles_symlinks
+download_ranger_configuration
