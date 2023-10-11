@@ -7,17 +7,19 @@
 (setq mouse-wheel-scroll-amount '(2 ((shift) . 4) ((control))))
 (setq mouse-wheel-progressive-speed nil)
 (setq scroll-preserve-screen-position 'always)
-(setq-default line-spacing 1)
-(setq-default indent-tabs-mode nil)
 (setq-default show-trailing-whitespace t)
+(setq-default indent-tabs-mode nil)
+(setq recentf-save-file (locate-user-emacs-file "share/.recentf"))
+(setq recentf-max-saved-items 1000)
 (setq backup-directory-alist
-      `((".*" . ,(locate-user-emacs-file "var/backup"))))
+      `((".*" . ,(locate-user-emacs-file "temp/backups/"))))
 (setq auto-save-file-name-transforms
-      `((".*" ,(locate-user-emacs-file "var/backup/") t)))
+      `((".*" ,(locate-user-emacs-file "temp/auto-saves/") t)))
 (setq auto-save-list-file-prefix
-      (locate-user-emacs-file "var/auto-save-list/.saves-"))
-(setq custom-file (locate-user-emacs-file "var/custom.el"))
+      (locate-user-emacs-file "temp/auto-saves/.saves-"))
+(setq custom-file (locate-user-emacs-file "custom.el"))
 (when (file-exists-p custom-file) (load custom-file))
+(setq desktop-path (list (locate-user-emacs-file "share/")))
 
 ;;; Modes
 (menu-bar-mode -1)
@@ -25,9 +27,10 @@
 (scroll-bar-mode -1)
 (line-number-mode 1)
 (column-number-mode 1)
-(global-linum-mode 1)
+(global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 (show-paren-mode 1)
+(desktop-save-mode 1)
 
 ;;; Keymaps
 (global-set-key (kbd "C-h") 'delete-backward-char)
@@ -39,33 +42,42 @@
 
 ;;; Package System
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
-(defvar my/packages '(helm ddskk use-package doom-themes init-loader))
-(dolist (package my/packages)
-  (unless (package-installed-p package)
-    (package-install package)))
+(dolist (package '(helm ddskk use-package doom-themes init-loader))
+  (unless (package-installed-p package) (package-install package)))
 
 ;;; Helm
-(setq recentf-save-file (locate-user-emacs-file "share/helm/.recentf"))
-(setq recentf-max-saved-items 1000)
 (helm-mode 1)
-(define-key global-map (kbd "C-x b")   'helm-for-files)
-(define-key global-map (kbd "C-x C-f") 'helm-find-files)
-(define-key global-map (kbd "C-x C-r") 'helm-recentf)
-(define-key global-map (kbd "M-x") 'helm-M-x)
-(define-key global-map (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-for-files)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-h") 'delete-backward-char)
 
 ;;; DDSKK
-(setq skk-user-directory (locate-user-emacs-file "share/ddskk"))
-(let ((l "/usr/share/skk/SKK-JISYO.L"))
-  (when (file-exists-p l) (setq skk-large-jisyo l)))
+(setq skk-user-directory (locate-user-emacs-file "share/ddskk/"))
+(setq skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
 (setq skk-dcomp-activate t)
 (setq skk-cursor-hiragana-color "pink")
-(global-set-key "\C-xj" 'skk-mode)
+(global-set-key (kbd "C-x j") 'skk-mode)
+(defun skk-isearch-setup-maybe ()
+  (require 'skk-vars)
+  (when (or (eq skk-isearch-mode-enable 'always)
+            (and (boundp 'skk-mode)
+                 skk-mode
+                 skk-isearch-mode-enable))
+    (skk-isearch-mode-setup)))
+(defun skk-isearch-cleanup-maybe ()
+  (require 'skk-vars)
+  (when (and (featurep 'skk-isearch)
+             skk-isearch-mode-enable)
+    (skk-isearch-mode-cleanup)))
+(add-hook 'isearch-mode-hook #'skk-isearch-setup-maybe)
+(add-hook 'isearch-mode-end-hook #'skk-isearch-cleanup-maybe)
 
 ;;; Doom-Themes
 (use-package doom-themes
@@ -76,7 +88,7 @@
   (load-theme 'doom-dracula t))
 
 ;;; Init-Loader
-(let ((inits (locate-user-emacs-file "inits")))
+(let ((inits (locate-user-emacs-file "inits/")))
   (when (file-directory-p inits)
     (setq init-loader-show-log-after-init 'error-only)
     (init-loader-load inits)))
