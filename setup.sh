@@ -3,6 +3,10 @@
 [[ "$1" = "exec" ]] && exec=true || exec=false
 echo "execution is $exec"
 
+function notify_success_or_failure () {
+    [[ $1 -eq 0 ]] && echo "... success" || echo "... failure"
+}
+
 function create_dotfiles_symlinks () {
     srcdir=$(cd $(dirname $0); pwd)
     files=(
@@ -18,11 +22,12 @@ function create_dotfiles_symlinks () {
             echo "[already linked correctly] $dest -> $src"
             continue
         fi
+        echo "[link] $dest -> $src"
         if $exec; then
             mkdir -pv `dirname $dest`
             ln -snfi $src $dest
+            notify_success_or_failure $?
         fi
-        echo "[link] $dest -> $src"
     done
 }
 
@@ -33,11 +38,12 @@ function install_ranger_configuration () {
         echo "[already installed] $dest"
         return
     fi
+    echo "[install] $src -> $dest"
     if $exec; then
         mkdir -pv `dirname $dest`
         cp $src $dest
+        notify_success_or_failure $?
     fi
-    echo "[install] $src -> $dest"
 }
 
 create_dotfiles_symlinks
