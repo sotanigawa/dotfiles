@@ -22,23 +22,23 @@ function create_dotfiles_symlinks () {
             mkdir -pv `dirname $dest`
             ln -snfi $src $dest
         fi
-        echo "[new link] $dest -> $src"
+        echo "[link] $dest -> $src"
     done
 }
 
-function download_ranger_configuration () {
-    src=https://raw.githubusercontent.com/ranger/ranger/master/examples/rc_emacs.conf
+function install_ranger_configuration () {
+    src=/usr/share/doc/ranger/examples/rc_emacs.conf
     dest=~/.config/ranger/rc.conf
     if [[ -e $dest ]]; then
-        echo "[already exists] $dest"
+        echo "[already installed] $dest"
         return
     fi
     if $exec; then
         mkdir -pv `dirname $dest`
-        curl $src -o $dest
+        cp $src $dest
     fi
-    echo "[download] $src -> $dest"
+    echo "[install] $src -> $dest"
 }
 
 create_dotfiles_symlinks
-download_ranger_configuration
+install_ranger_configuration
