@@ -29,6 +29,8 @@
 (define-key *input-map* (kbd "C-m") 'input-submit)
 (define-key *input-map* (kbd "C-h") 'input-delete-backward-char)
 
+(set-font "-*-terminus-medium-*-*--14-*-*-*-*-*-*-*")
+
 (load (merge-pathnames #P"init-local.lisp" *data-dir*) :if-does-not-exist nil)
 
 (enable-mode-line (current-screen) (current-head) t)

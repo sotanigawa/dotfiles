@@ -87,6 +87,9 @@
   :config
   (load-theme 'doom-dracula t))
 
+;;; Font
+(add-to-list 'default-frame-alist '(font . "RictyDiscord-14"))
+
 ;;; Init-Loader
 (let ((inits (locate-user-emacs-file "inits/")))
   (when (file-directory-p inits)
