@@ -1,19 +1,23 @@
+export EDITOR=vi
+export PAGER=less
+export LESSHISTFILE=-
+
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 PROMPT='[%~]%# '
 RPROMPT='[%?]'
 
-autoload -Uz compinit; compinit -d ~/.zcompdump
-autoload -Uz colors; colors
+autoload -Uz compinit && compinit
+autoload -Uz colors && colors
 
 setopt auto_cd
 setopt auto_pushd
+setopt pushd_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
 setopt share_history
 setopt interactive_comments
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt pushd_ignore_dups
 
 alias ls='ls --color=auto'
 alias la='ls -a'
