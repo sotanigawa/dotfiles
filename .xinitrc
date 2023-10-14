@@ -1,0 +1,13 @@
+xset s off -dpms
+
+xrdb -merge ~/.Xresources
+xrdb -merge ~/.Xresources.local
+
+export LANG=ja_JP.UTF-8
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+fcitx5 &
+
+exec stumpwm

@@ -12,6 +12,9 @@ function create_dotfiles_symlinks () {
     files=(
         .emacs.d/init.el
         .gitconfig
+        .stumpwm.d/init.lisp
+        .xinitrc
+        .Xresources
         .zshrc
     )
     for file in ${files[@]};
