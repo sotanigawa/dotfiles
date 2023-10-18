@@ -31,9 +31,11 @@
 (global-hl-line-mode 1)
 (show-paren-mode 1)
 (desktop-save-mode 1)
+(when (version<= "28" emacs-version) (fido-vertical-mode 1))
 
 ;;; Keymaps
 (global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "C-x C-r") 'recentf)
 (global-set-key (kbd "M-?") 'help-for-help)
 (global-set-key (kbd "C-c h") 'windmove-left)
 (global-set-key (kbd "C-c j") 'windmove-down)
@@ -45,18 +47,8 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
-(dolist (package '(helm ddskk use-package doom-themes init-loader))
+(dolist (package '(ddskk use-package doom-themes init-loader))
   (unless (package-installed-p package) (package-install package)))
-
-;;; Helm
-(helm-mode 1)
-(global-set-key (kbd "C-x b") 'helm-for-files)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x C-r") 'helm-recentf)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-(define-key helm-map (kbd "C-h") 'delete-backward-char)
 
 ;;; DDSKK
 (setq skk-user-directory (locate-user-emacs-file "share/ddskk/"))
