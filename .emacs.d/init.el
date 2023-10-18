@@ -42,48 +42,44 @@
 (global-set-key (kbd "C-c k") 'windmove-up)
 (global-set-key (kbd "C-c l") 'windmove-right)
 
+;;; Font
+(add-to-list 'default-frame-alist '(font . "RictyDiscord-14"))
+
 ;;; Package System
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
-(dolist (package '(ddskk use-package doom-themes init-loader))
-  (unless (package-installed-p package) (package-install package)))
+(unless (package-installed-p 'use-package) (package-install 'use-package))
 
 ;;; DDSKK
-(setq skk-user-directory (locate-user-emacs-file "share/ddskk/"))
-(setq skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
-(setq skk-dcomp-activate t)
-(setq skk-cursor-hiragana-color "pink")
-(global-set-key (kbd "C-x j") 'skk-mode)
-(defun skk-isearch-setup-maybe ()
-  (require 'skk-vars)
-  (when (or (eq skk-isearch-mode-enable 'always)
-            (and (boundp 'skk-mode)
-                 skk-mode
-                 skk-isearch-mode-enable))
-    (skk-isearch-mode-setup)))
-(defun skk-isearch-cleanup-maybe ()
-  (require 'skk-vars)
-  (when (and (featurep 'skk-isearch)
-             skk-isearch-mode-enable)
-    (skk-isearch-mode-cleanup)))
-(add-hook 'isearch-mode-hook #'skk-isearch-setup-maybe)
-(add-hook 'isearch-mode-end-hook #'skk-isearch-cleanup-maybe)
+(use-package ddskk
+  :ensure t
+  :custom
+  (skk-user-directory (locate-user-emacs-file "share/ddskk/"))
+  (skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
+  (skk-cursor-hiragana-color "pink")
+  (skk-dcomp-activate t)
+  :bind
+  (("C-x j" . 'skk-mode))
+  :hook
+  ((isearch-mode . skk-isearch-mode-setup)
+   (isearch-mode-end . skk-isearch-mode-cleanup)))
 
 ;;; Doom-Themes
 (use-package doom-themes
+  :ensure t
   :custom
-  (doom-themes-enable-italic t)
   (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t)
   :config
   (load-theme 'doom-dracula t))
 
-;;; Font
-(add-to-list 'default-frame-alist '(font . "RictyDiscord-14"))
-
 ;;; Init-Loader
-(let ((inits (locate-user-emacs-file "inits/")))
-  (when (file-directory-p inits)
-    (setq init-loader-show-log-after-init 'error-only)
-    (init-loader-load inits)))
+(use-package init-loader
+  :ensure t
+  :custom
+  (init-loader-directory (locate-user-emacs-file "inits/"))
+  (init-loader-show-log-after-init 'error-only)
+  :config
+  (when (file-directory-p init-loader-directory) (init-loader-load)))
