@@ -30,17 +30,11 @@
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 (show-paren-mode 1)
-(desktop-save-mode 1)
 (when (version<= "28" emacs-version) (fido-vertical-mode 1))
 
 ;;; Keymaps
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-x C-r") 'recentf)
-(global-set-key (kbd "M-?") 'help-for-help)
-(global-set-key (kbd "C-c h") 'windmove-left)
-(global-set-key (kbd "C-c j") 'windmove-down)
-(global-set-key (kbd "C-c k") 'windmove-up)
-(global-set-key (kbd "C-c l") 'windmove-right)
 
 ;;; Font
 (add-to-list 'default-frame-alist '(font . "RictyDiscord-14"))
