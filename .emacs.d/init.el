@@ -18,12 +18,10 @@
  '(tool-bar-mode nil)
  '(use-dialog-box nil)
  ;; Backup and Auto-Save Files
- '(backup-directory-alist
-   `((".*" . ,(locate-user-emacs-file "temp/backups/"))))
- '(auto-save-file-name-transforms
-   `((".*" ,(locate-user-emacs-file "temp/auto-saves/") t)))
- '(auto-save-list-file-prefix
-   (locate-user-emacs-file "temp/auto-saves/.saves-"))
+ '(temporary-file-directory (locate-user-emacs-file "temp/"))
+ '(backup-directory-alist `((".*" . ,temporary-file-directory)))
+ '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+ '(auto-save-list-file-prefix temporary-file-directory)
  ;; Editing
  '(indent-tabs-mode nil)
  '(show-paren-mode t)
@@ -54,7 +52,7 @@
 (use-package ddskk
   :ensure t
   :custom
-  (skk-user-directory (locate-user-emacs-file "share/ddskk/"))
+  (skk-user-directory (locate-user-emacs-file "share/skk/"))
   (skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
   (skk-cursor-hiragana-color "pink")
   (skk-dcomp-activate t)
