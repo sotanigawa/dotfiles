@@ -22,15 +22,19 @@
  '(backup-directory-alist `((".*" . ,temporary-file-directory)))
  '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
  '(auto-save-list-file-prefix temporary-file-directory)
+ ;; Recentf
+ '(recentf-mode t)
+ '(recentf-save-file (locate-user-emacs-file "share/.recentf"))
+ '(recentf-max-saved-items 1000)
  ;; Editing
  '(indent-tabs-mode nil)
  '(show-paren-mode t)
+ ;; Savehist
+ '(savehist-mode t)
+ '(savehist-file (locate-user-emacs-file "share/history"))
  ;; Miscellaneous
  '(load-prefer-newer t)
  '(vc-follow-symlinks t)
- '(fido-vertical-mode t)
- '(recentf-save-file (locate-user-emacs-file "share/.recentf"))
- '(recentf-max-saved-items 1000)
  '(custom-file (locate-user-emacs-file "custom.el")))
 
 ;;; Faces
@@ -49,6 +53,25 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+;;; Minibuffer Completion System
+(use-package vertico
+  :ensure t
+  :custom
+  (vertico-count 20)
+  :init
+  (vertico-mode))
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package marginalia
+  :ensure t
+  :init
+  (marginalia-mode))
 
 ;;; DDSKK
 (use-package ddskk
