@@ -97,6 +97,14 @@
   :config
   (load-theme 'doom-dracula t))
 
+;;; Doom-Modeline
+(use-package doom-modeline
+  :ensure t
+  :custom
+  (doom-modeline-icon nil)
+  :init
+  (doom-modeline-mode))
+
 ;;; Init-Loader
 (use-package init-loader
   :ensure t
