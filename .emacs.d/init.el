@@ -24,7 +24,7 @@
  '(auto-save-list-file-prefix temporary-file-directory)
  ;; Recentf
  '(recentf-mode t)
- '(recentf-save-file (locate-user-emacs-file "share/.recentf"))
+ '(recentf-save-file (locate-user-emacs-file "share/recentf"))
  '(recentf-max-saved-items 1000)
  ;; Editing
  '(indent-tabs-mode nil)
