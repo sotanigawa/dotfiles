@@ -16,6 +16,7 @@
  '(scroll-bar-mode nil)
  '(menu-bar-mode nil)
  '(tool-bar-mode nil)
+ '(tab-bar-mode t)
  '(use-dialog-box nil)
  ;; Backup and Auto-Save Files
  '(temporary-file-directory (locate-user-emacs-file "temp/"))
