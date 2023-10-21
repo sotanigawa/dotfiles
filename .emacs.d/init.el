@@ -40,7 +40,7 @@
 
 ;;; Faces
 (custom-set-faces
- '(default ((t (:family "RictyDiscord" :height 140)))))
+ '(default ((t (:family "Cica" :height 140)))))
 
 ;;; Keymaps
 (global-set-key (kbd "C-h") 'delete-backward-char)

@@ -1,6 +1,6 @@
 urxvt*scrollBar: false
 urxvt*cursorBlink: true
-urxvt*font: xft:Ricty Discord:size=16
+urxvt*font: xft:Cica:size=16
 emacs*useXIM: false
 
 *.foreground: #F8F8F2
