@@ -45,6 +45,7 @@ function install_ranger_configuration () {
     if $exec; then
         mkdir -pv `dirname $dest`
         cp $src $dest
+        sed -i "s/set mouse_enabled true/set mouse_enabled false/" $dest
         notify_success_or_failure $?
     fi
 }
