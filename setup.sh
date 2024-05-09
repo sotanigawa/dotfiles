@@ -7,31 +7,17 @@ function notify_success_or_failure () {
     [[ $1 -eq 0 ]] && echo "... success" || echo "... failure"
 }
 
-function create_dotfiles_symlinks () {
-    srcdir=$(cd $(dirname $0); pwd)
-    files=(
-        .emacs.d/init.el
-        .gitconfig
-        .stumpwm.d/init.lisp
-        .xinitrc
-        .Xresources
-        .zshrc
-    )
-    for file in ${files[@]};
-    do
-        src=$srcdir/$file
-        dest=~/$file
-        if [[ `readlink $dest` = $src ]]; then
-            echo "[already linked correctly] $dest -> $src"
-            continue
-        fi
-        echo "[link] $dest -> $src"
-        if $exec; then
-            mkdir -pv `dirname $dest`
-            ln -snfi $src $dest
-            notify_success_or_failure $?
-        fi
-    done
+function create_symlink () {
+    if [[ `readlink $2` = $1 ]]; then
+        echo "[already linked correctly] $2 -> $1"
+        return
+    fi
+    echo "[link] $2 -> $1"
+    if $exec; then
+        mkdir -pv `dirname $2`
+        ln -snfi $1 $2
+        notify_success_or_failure $?
+    fi
 }
 
 function install_ranger_configuration () {
@@ -50,5 +36,11 @@ function install_ranger_configuration () {
     fi
 }
 
-create_dotfiles_symlinks
+srcdir=$(cd $(dirname $0); pwd)
+create_symlink $srcdir/.emacs.d/init.el ~/.emacs.d/init.el
+create_symlink $srcdir/.gitconfig ~/.gitconfig
+create_symlink $srcdir/.stumpwm.d/init.lisp ~/.stumpwm.d/init.lisp
+create_symlink $srcdir/.xinitrc ~/.xinitrc
+create_symlink $srcdir/.Xresources ~/.Xresources
+create_symlink $srcdir/.zshrc ~/.zshrc
 install_ranger_configuration
