@@ -1,11 +1,7 @@
 #!/bin/sh
 
 [[ "$1" = "exec" ]] && exec=true || exec=false
-echo "execution is $exec"
-
-function notify_success_or_failure () {
-    [[ $1 -eq 0 ]] && echo "... success" || echo "... failure"
-}
+echo "execution flag is $exec"
 
 function create_symlink () {
     if [[ `readlink $2` = $1 ]]; then
@@ -16,31 +12,31 @@ function create_symlink () {
     if $exec; then
         mkdir -pv `dirname $2`
         ln -snfi $1 $2
-        notify_success_or_failure $?
     fi
 }
 
-function install_ranger_configuration () {
-    src=/usr/share/doc/ranger/examples/rc_emacs.conf
-    dest=~/.config/ranger/rc.conf
-    if [[ -e $dest ]]; then
-        echo "[already installed] $dest"
+function ranger_setup () {
+    rc_conf_default=/usr/share/doc/ranger/examples/rc_emacs.conf
+    rc_conf=~/.config/ranger/rc.conf
+    if [[ -e $rc_conf ]]; then
+        echo "[file already exists] $rc_conf"
         return
     fi
-    echo "[install] $src -> $dest"
+    echo "[copy and tweak] $rc_conf_default -> $rc_conf"
     if $exec; then
-        mkdir -pv `dirname $dest`
-        cp $src $dest
-        sed -i "s/set mouse_enabled true/set mouse_enabled false/" $dest
-        notify_success_or_failure $?
+        mkdir -pv `dirname $rc_conf`
+        cp $rc_conf_default $rc_conf
+        sed -i "s/set mouse_enabled true/set mouse_enabled false/" $rc_conf
     fi
 }
 
-srcdir=$(cd $(dirname $0); pwd)/files
-create_symlink $srcdir/emacs.d/init.el ~/.emacs.d/init.el
-create_symlink $srcdir/gitconfig ~/.gitconfig
-create_symlink $srcdir/stumpwm.d/init.lisp ~/.stumpwm.d/init.lisp
-create_symlink $srcdir/xinitrc ~/.xinitrc
-create_symlink $srcdir/Xresources ~/.Xresources
-create_symlink $srcdir/zshrc ~/.zshrc
-install_ranger_configuration
+files=$(cd $(dirname $0); pwd)/files
+
+create_symlink $files/emacs.d/init.el ~/.emacs.d/init.el
+create_symlink $files/gitconfig ~/.gitconfig
+create_symlink $files/stumpwm.d/init.lisp ~/.stumpwm.d/init.lisp
+create_symlink $files/xinitrc ~/.xinitrc
+create_symlink $files/Xresources ~/.Xresources
+create_symlink $files/zshrc ~/.zshrc
+
+ranger_setup
