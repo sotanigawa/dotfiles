@@ -36,11 +36,11 @@ function install_ranger_configuration () {
     fi
 }
 
-srcdir=$(cd $(dirname $0); pwd)
-create_symlink $srcdir/.emacs.d/init.el ~/.emacs.d/init.el
-create_symlink $srcdir/.gitconfig ~/.gitconfig
-create_symlink $srcdir/.stumpwm.d/init.lisp ~/.stumpwm.d/init.lisp
-create_symlink $srcdir/.xinitrc ~/.xinitrc
-create_symlink $srcdir/.Xresources ~/.Xresources
-create_symlink $srcdir/.zshrc ~/.zshrc
+srcdir=$(cd $(dirname $0); pwd)/files
+create_symlink $srcdir/emacs.d/init.el ~/.emacs.d/init.el
+create_symlink $srcdir/gitconfig ~/.gitconfig
+create_symlink $srcdir/stumpwm.d/init.lisp ~/.stumpwm.d/init.lisp
+create_symlink $srcdir/xinitrc ~/.xinitrc
+create_symlink $srcdir/Xresources ~/.Xresources
+create_symlink $srcdir/zshrc ~/.zshrc
 install_ranger_configuration
