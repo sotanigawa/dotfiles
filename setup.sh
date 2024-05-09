@@ -15,7 +15,7 @@ function create_symlink () {
     fi
 }
 
-function ranger_setup () {
+function ranger_rc_conf_setup () {
     rc_conf_default=/usr/share/doc/ranger/examples/rc_emacs.conf
     rc_conf=~/.config/ranger/rc.conf
     if [[ -e $rc_conf ]]; then
@@ -34,9 +34,10 @@ files=$(cd $(dirname $0); pwd)/files
 
 create_symlink $files/emacs.d/init.el ~/.emacs.d/init.el
 create_symlink $files/gitconfig ~/.gitconfig
+create_symlink $files/ranger/rifle.conf ~/.config/ranger/rifle.conf
 create_symlink $files/stumpwm.d/init.lisp ~/.stumpwm.d/init.lisp
 create_symlink $files/xinitrc ~/.xinitrc
 create_symlink $files/Xresources ~/.Xresources
 create_symlink $files/zshrc ~/.zshrc
 
-ranger_setup
+ranger_rc_conf_setup
