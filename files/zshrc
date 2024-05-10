@@ -20,17 +20,12 @@ setopt share_history
 setopt interactive_comments
 
 alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -l'
-alias lla='ls -la'
+alias grep="grep --color=auto"
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
 alias sudo='sudo '
-alias q='exit'
-alias -g L='| less'
-alias -g G='| grep'
 alias fzf='fzf --ansi'
 
 bindkey -e
