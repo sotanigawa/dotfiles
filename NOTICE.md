@@ -2,14 +2,14 @@
 
 This repository contains code from third parties listed below.
 
-## Dracula for Xresources
+## Dracula Theme
 
-Source: https://github.com/dracula/xresources
+Source: https://github.com/dracula/dracula-theme
 
 ```
 The MIT License (MIT)
 
-Copyright (c) 2016 Dracula Theme
+Copyright (c) 2023 Dracula Theme
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

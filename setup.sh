@@ -32,6 +32,7 @@ function ranger_rc_conf_setup () {
 
 files=$(cd $(dirname $0); pwd)/files
 
+create_symlink $files/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
 create_symlink $files/emacs.d/init.el ~/.emacs.d/init.el
 create_symlink $files/gitconfig ~/.gitconfig
 create_symlink $files/ranger/rifle.conf ~/.config/ranger/rifle.conf
