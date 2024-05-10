@@ -1,5 +1,4 @@
 urxvt*scrollBar: false
-urxvt*cursorBlink: true
 urxvt*font: xft:Cica:size=16
 emacs*useXIM: false
 
