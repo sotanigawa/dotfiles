@@ -35,7 +35,7 @@ files=$(cd $(dirname $0); pwd)/files
 create_symlink $files/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
 create_symlink $files/emacs.d/init.el ~/.emacs.d/init.el
 create_symlink $files/gitconfig ~/.gitconfig
-create_symlink $files/nvim/init.vim ~/.config/nvim/init.vim
+create_symlink $files/nvim/init.lua ~/.config/nvim/init.lua
 create_symlink $files/ranger/rifle.conf ~/.config/ranger/rifle.conf
 create_symlink $files/stumpwm.d/init.lisp ~/.stumpwm.d/init.lisp
 create_symlink $files/xinitrc ~/.xinitrc
