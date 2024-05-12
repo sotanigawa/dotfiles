@@ -13,7 +13,7 @@
       *startup-message* nil)
 
 (undefine-key *root-map* (kbd "h"))
-(define-key *root-map* (kbd "c") "exec urxvt")
+(define-key *root-map* (kbd "c") "exec alacritty")
 (define-key *root-map* (kbd "d") "exec dmenu_run")
 (undefine-key *group-root-map* (kbd "k"))
 (undefine-key *group-root-map* (kbd "C-k"))
