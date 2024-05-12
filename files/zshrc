@@ -11,6 +11,8 @@ RPROMPT='[%?]'
 autoload -Uz compinit && compinit
 autoload -Uz colors && colors
 
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
+
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
