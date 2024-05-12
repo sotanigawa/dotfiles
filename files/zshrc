@@ -1,4 +1,4 @@
-export EDITOR=vi
+export EDITOR=nvim
 export PAGER=less
 export LESSHISTFILE=-
 
@@ -26,6 +26,7 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
 alias sudo='sudo '
+alias vim='nvim'
 
 bindkey -e
 
