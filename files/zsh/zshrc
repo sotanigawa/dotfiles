@@ -2,13 +2,13 @@ export EDITOR=nvim
 export PAGER=less
 export LESSHISTFILE=-
 
-HISTFILE=~/.zsh_history
+HISTFILE=~/.local/state/zsh/history
 HISTSIZE=100000
 SAVEHIST=100000
 PROMPT='[%~]%# '
 RPROMPT='[%?]'
 
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -d ~/.cache/zsh/compdump
 autoload -Uz colors && colors
 
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'

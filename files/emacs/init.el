@@ -19,23 +19,23 @@
  '(tab-bar-mode t)
  '(use-dialog-box nil)
  ;; Backup and Auto-Save Files
- '(temporary-file-directory (locate-user-emacs-file "temp/"))
- '(backup-directory-alist `((".*" . ,temporary-file-directory)))
- '(auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
- '(auto-save-list-file-prefix temporary-file-directory)
+ '(backup-directory-alist `((".*" . ,"~/.local/state/emacs/backups/")))
+ '(auto-save-file-name-transforms `((".*" ,"~/.local/state/emacs/auto-saves/" t)))
+ '(auto-save-list-file-prefix "~/.local/state/emacs/auto-saves/")
  ;; Recentf
  '(recentf-mode t)
- '(recentf-save-file (locate-user-emacs-file "share/recentf"))
+ '(recentf-save-file "~/.local/state/emacs/recentf")
  '(recentf-max-saved-items 1000)
  ;; Editing
  '(indent-tabs-mode nil)
  '(show-paren-mode t)
  ;; Savehist
  '(savehist-mode t)
- '(savehist-file (locate-user-emacs-file "share/history"))
+ '(savehist-file "~/.local/state/emacs/history")
  ;; Miscellaneous
  '(load-prefer-newer t)
  '(vc-follow-symlinks t)
+ '(package-user-dir "~/.local/share/emacs/elpa/")
  '(custom-file (locate-user-emacs-file "custom.el")))
 
 ;;; Faces
@@ -78,7 +78,7 @@
 (use-package ddskk
   :ensure t
   :custom
-  (skk-user-directory (locate-user-emacs-file "share/skk/"))
+  (skk-user-directory "~/.local/share/emacs/skk/")
   (skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
   (skk-cursor-hiragana-color "pink")
   (skk-dcomp-activate t)
