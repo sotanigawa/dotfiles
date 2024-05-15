@@ -2,13 +2,7 @@
 
 (setq *message-window-gravity* :center
       *input-window-gravity* :center
-      *maxsize-border-width* 1
-      *transient-border-width* 1
-      *normal-border-width* 1
       *window-border-style* :thin
-      *mode-line-border-width* 0
-      *mode-line-pad-x* 0
-      *mode-line-pad-y* 0
       *mouse-focus-policy* :click
       *startup-message* nil)
 
@@ -32,5 +26,3 @@
 (set-font "-*-terminus-medium-*-*--14-*-*-*-*-*-*-*")
 
 (load (merge-pathnames #P"init-local.lisp" *data-dir*) :if-does-not-exist nil)
-
-(enable-mode-line (current-screen) (current-head) t)
