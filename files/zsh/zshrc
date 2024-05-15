@@ -1,6 +1,5 @@
 export EDITOR=nvim
 export PAGER=less
-export LESSHISTFILE=-
 
 HISTFILE=~/.local/state/zsh/history
 HISTSIZE=100000
@@ -40,5 +39,3 @@ if type fzf > /dev/null 2>&1; then
     zle -N select-history
     bindkey '^r' select-history
 fi
-
-() { [ $1 -nt $1.zwc ] && zcompile $1 } ${(%):-%N}
