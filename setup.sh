@@ -33,13 +33,13 @@ function ranger_rc_conf_setup () {
 files=$(cd $(dirname $0); pwd)/files
 
 create_symlink $files/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
-create_symlink $files/emacs.d/init.el ~/.emacs.d/init.el
-create_symlink $files/gitconfig ~/.gitconfig
+create_symlink $files/emacs/init.el ~/.emacs.d/init.el
+create_symlink $files/git/config ~/.gitconfig
 create_symlink $files/nvim/init.lua ~/.config/nvim/init.lua
 create_symlink $files/ranger/rifle.conf ~/.config/ranger/rifle.conf
-create_symlink $files/stumpwm.d/init.lisp ~/.stumpwm.d/init.lisp
-create_symlink $files/xinitrc ~/.xinitrc
-create_symlink $files/Xresources ~/.Xresources
-create_symlink $files/zshrc ~/.zshrc
+create_symlink $files/stumpwm/init.lisp ~/.stumpwm.d/init.lisp
+create_symlink $files/X11/xinitrc ~/.xinitrc
+create_symlink $files/X11/Xresources ~/.Xresources
+create_symlink $files/zsh/zshrc ~/.zshrc
 
 ranger_rc_conf_setup
