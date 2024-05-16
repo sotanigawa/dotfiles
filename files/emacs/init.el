@@ -22,16 +22,9 @@
  '(backup-directory-alist `((".*" . ,"~/.local/state/emacs/backups/")))
  '(auto-save-file-name-transforms `((".*" ,"~/.local/state/emacs/auto-saves/" t)))
  '(auto-save-list-file-prefix "~/.local/state/emacs/auto-saves/")
- ;; Recentf
- '(recentf-mode t)
- '(recentf-save-file "~/.local/state/emacs/recentf")
- '(recentf-max-saved-items 1000)
  ;; Editing
  '(indent-tabs-mode nil)
  '(show-paren-mode t)
- ;; Savehist
- '(savehist-mode t)
- '(savehist-file "~/.local/state/emacs/history")
  ;; Miscellaneous
  '(load-prefer-newer t)
  '(vc-follow-symlinks t)
@@ -44,7 +37,6 @@
 
 ;;; Keymaps
 (global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key (kbd "C-x C-r") 'recentf)
 
 ;;; Package System
 (require 'package)
@@ -54,6 +46,23 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+;;; Recentf and Savehist
+(use-package recentf
+  :custom
+  (recentf-save-file "~/.local/state/emacs/recentf")
+  (recentf-max-saved-items 1000)
+  (recentf-auto-cleanup 'never)
+  :init
+  (recentf-mode)
+  :bind
+  (("C-x C-r" . 'recentf)))
+
+(use-package savehist
+  :custom
+  (savehist-file "~/.local/state/emacs/history")
+  :init
+  (savehist-mode))
 
 ;;; Minibuffer Completion System
 (use-package vertico
