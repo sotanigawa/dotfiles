@@ -27,7 +27,7 @@
  '(show-paren-mode t)
  ;; Miscellaneous
  '(load-prefer-newer t)
- '(vc-follow-symlinks t)
+ '(vc-follow-symlinks nil)
  '(package-user-dir "~/.local/share/emacs/elpa/")
  '(custom-file (locate-user-emacs-file "custom.el")))
 
