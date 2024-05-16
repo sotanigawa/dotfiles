@@ -61,7 +61,9 @@
   :custom
   (vertico-count 20)
   :init
-  (vertico-mode))
+  (vertico-mode)
+  :bind
+  (:map vertico-map ("C-l" . vertico-directory-up)))
 
 (use-package orderless
   :ensure t
