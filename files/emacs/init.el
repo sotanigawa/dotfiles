@@ -26,7 +26,6 @@
  '(indent-tabs-mode nil)
  ;; Miscellaneous
  '(vc-follow-symlinks nil)
- '(package-user-dir "~/.local/share/emacs/elpa/")
  '(custom-file (locate-user-emacs-file "custom.el")))
 
 ;;; Faces
@@ -36,14 +35,18 @@
 ;;; Keymaps
 (global-set-key (kbd "C-h") 'delete-backward-char)
 
-;;; Package System
+;;; Package
 (require 'package)
+(custom-set-variables '(package-user-dir "~/.local/share/emacs/elpa/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
+
+;;; Use-Package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+(require 'use-package)
 
 ;;; Recentf and Savehist
 (use-package recentf
