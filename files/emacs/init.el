@@ -47,6 +47,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+(custom-set-variables '(use-package-always-ensure t))
 
 ;;; Recentf and Savehist
 (use-package recentf
@@ -54,41 +55,40 @@
   (recentf-save-file "~/.local/state/emacs/recentf")
   (recentf-max-saved-items 1000)
   (recentf-auto-cleanup 'never)
-  :init
-  (recentf-mode)
-  :bind
-  ("C-x C-r" . 'recentf))
+  :config
+  (global-set-key (kbd "C-x C-r") 'recentf)
+  (recentf-mode))
 
 (use-package savehist
   :custom
   (savehist-file "~/.local/state/emacs/history")
-  :init
+  :config
   (savehist-mode))
 
 ;;; Minibuffer Completion System
 (use-package vertico
-  :ensure t
   :custom
   (vertico-count 20)
-  :init
-  (vertico-mode)
+  :config
+  (vertico-mode))
+
+(use-package vertico-directory
+  :after vertico
+  :ensure nil
   :bind
   (:map vertico-map ("C-l" . vertico-directory-up)))
 
 (use-package orderless
-  :ensure t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package marginalia
-  :ensure t
-  :init
+  :config
   (marginalia-mode))
 
 ;;; DDSKK
 (use-package ddskk
-  :ensure t
   :custom
   (skk-user-directory "~/.local/share/emacs/skk/")
   (skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
@@ -97,12 +97,11 @@
   :bind
   ("C-x j" . 'skk-mode)
   :hook
-  ((isearch-mode . skk-isearch-mode-setup)
-   (isearch-mode-end . skk-isearch-mode-cleanup)))
+  (isearch-mode . skk-isearch-mode-setup)
+  (isearch-mode-end . skk-isearch-mode-cleanup))
 
 ;;; Doom-Themes
 (use-package doom-themes
-  :ensure t
   :custom
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
@@ -111,15 +110,13 @@
 
 ;;; Doom-Modeline
 (use-package doom-modeline
-  :ensure t
   :custom
   (doom-modeline-icon nil)
-  :init
+  :config
   (doom-modeline-mode))
 
 ;;; Init-Loader
 (use-package init-loader
-  :ensure t
   :custom
   (init-loader-directory (locate-user-emacs-file "inits/"))
   (init-loader-show-log-after-init 'error-only)
