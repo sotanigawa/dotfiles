@@ -24,9 +24,7 @@
  '(auto-save-list-file-prefix "~/.local/state/emacs/auto-saves/")
  ;; Editing
  '(indent-tabs-mode nil)
- '(show-paren-mode t)
  ;; Miscellaneous
- '(load-prefer-newer t)
  '(vc-follow-symlinks nil)
  '(package-user-dir "~/.local/share/emacs/elpa/")
  '(custom-file (locate-user-emacs-file "custom.el")))
@@ -56,7 +54,7 @@
   :init
   (recentf-mode)
   :bind
-  (("C-x C-r" . 'recentf)))
+  ("C-x C-r" . 'recentf))
 
 (use-package savehist
   :custom
@@ -94,7 +92,7 @@
   (skk-cursor-hiragana-color "pink")
   (skk-dcomp-activate t)
   :bind
-  (("C-x j" . 'skk-mode))
+  ("C-x j" . 'skk-mode)
   :hook
   ((isearch-mode . skk-isearch-mode-setup)
    (isearch-mode-end . skk-isearch-mode-cleanup)))
