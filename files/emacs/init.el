@@ -1,32 +1,32 @@
 ;;; Variables
-(custom-set-variables
+(setopt
  ;; Entering and Exiting
- '(inhibit-startup-screen t)
- '(confirm-kill-emacs 'y-or-n-p)
+ inhibit-startup-screen t
+ confirm-kill-emacs 'y-or-n-p
  ;; Controlling the Display
- '(scroll-preserve-screen-position 'always)
- '(show-trailing-whitespace t)
- '(line-number-mode t)
- '(column-number-mode t)
- '(global-hl-line-mode t)
- '(global-display-line-numbers-mode t)
+ scroll-preserve-screen-position 'always
+ show-trailing-whitespace t
+ line-number-mode t
+ column-number-mode t
+ global-hl-line-mode t
+ global-display-line-numbers-mode t
  ;; Frames and Graphical Displays
- '(mouse-wheel-scroll-amount '(2 ((shift) . 4) ((control))))
- '(mouse-wheel-progressive-speed nil)
- '(scroll-bar-mode nil)
- '(menu-bar-mode nil)
- '(tool-bar-mode nil)
- '(tab-bar-mode t)
- '(use-dialog-box nil)
+ mouse-wheel-scroll-amount '(2 ((shift) . 4) ((control)))
+ mouse-wheel-progressive-speed nil
+ scroll-bar-mode nil
+ menu-bar-mode nil
+ tool-bar-mode nil
+ tab-bar-mode t
+ use-dialog-box nil
  ;; Backup and Auto-Save Files
- '(backup-directory-alist `((".*" . ,"~/.local/state/emacs/backups/")))
- '(auto-save-file-name-transforms `((".*" ,"~/.local/state/emacs/auto-saves/" t)))
- '(auto-save-list-file-prefix "~/.local/state/emacs/auto-saves/")
+ backup-directory-alist `((".*" . ,"~/.local/state/emacs/backups/"))
+ auto-save-file-name-transforms `((".*" ,"~/.local/state/emacs/auto-saves/" t))
+ auto-save-list-file-prefix "~/.local/state/emacs/auto-saves/"
  ;; Editing
- '(indent-tabs-mode nil)
+ indent-tabs-mode nil
  ;; Miscellaneous
- '(vc-follow-symlinks nil)
- '(custom-file (locate-user-emacs-file "custom.el")))
+ vc-follow-symlinks nil
+ custom-file (locate-user-emacs-file "custom.el"))
 
 ;;; Faces
 (custom-set-faces
@@ -37,7 +37,7 @@
 
 ;;; Package
 (require 'package)
-(custom-set-variables '(package-user-dir "~/.local/share/emacs/elpa/"))
+(setopt package-user-dir "~/.local/share/emacs/elpa/")
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
@@ -47,7 +47,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
-(custom-set-variables '(use-package-always-ensure t))
+(setopt use-package-always-ensure t)
 
 ;;; Recentf and Savehist
 (use-package recentf
