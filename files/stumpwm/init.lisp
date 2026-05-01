@@ -1,6 +1,6 @@
 (in-package :stumpwm)
 
-(setq *message-window-gravity* :center
+(setf *message-window-gravity* :center
       *input-window-gravity* :center
       *window-border-style* :thin
       *mouse-focus-policy* :click
