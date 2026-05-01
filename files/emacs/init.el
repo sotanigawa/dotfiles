@@ -1,62 +1,62 @@
-;;; Variables
+;;; early settings
+(setopt custom-file (locate-user-emacs-file "custom.el"))
+
+;;; ui
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(tab-bar-mode 1)
+(global-hl-line-mode 1)
+(global-display-line-numbers-mode 1)
+
 (setopt
- ;; Entering and Exiting
  inhibit-startup-screen t
- confirm-kill-emacs 'y-or-n-p
- ;; Controlling the Display
+ use-dialog-box nil
  scroll-preserve-screen-position 'always
  show-trailing-whitespace t
  line-number-mode t
  column-number-mode t
- global-hl-line-mode t
- global-display-line-numbers-mode t
- ;; Frames and Graphical Displays
  mouse-wheel-scroll-amount '(2 ((shift) . 4) ((control)))
- mouse-wheel-progressive-speed nil
- scroll-bar-mode nil
- menu-bar-mode nil
- tool-bar-mode nil
- tab-bar-mode t
- use-dialog-box nil
- ;; Backup and Auto-Save Files
- backup-directory-alist `((".*" . ,"~/.local/state/emacs/backups/"))
- auto-save-file-name-transforms `((".*" ,"~/.local/state/emacs/auto-saves/" t))
- auto-save-list-file-prefix "~/.local/state/emacs/auto-saves/"
- ;; Editing
- indent-tabs-mode nil
- ;; Miscellaneous
- vc-follow-symlinks nil
- custom-file (locate-user-emacs-file "custom.el"))
+ mouse-wheel-progressive-speed nil)
 
-;;; Faces
+;;; fonts and faces
 (custom-set-faces
  '(default ((t (:family "Cica" :height 140)))))
 
-;;; Keymaps
-(global-set-key (kbd "C-h") 'delete-backward-char)
+;;; keymaps
+(global-set-key (kbd "C-h")   'delete-backward-char)
+(global-set-key (kbd "C-M-p") 'backward-paragraph)
+(global-set-key (kbd "C-M-n") 'forward-paragraph)
 
-;;; Package
+;;; editing
+(setopt
+ indent-tabs-mode nil)
+
+;;; files and backups
+(setopt
+ confirm-kill-emacs 'y-or-n-p
+ vc-follow-symlinks nil
+ backup-directory-alist          '((".*" . "~/.local/state/emacs/backups/"))
+ auto-save-file-name-transforms  '((".*" "~/.local/state/emacs/auto-saves/" t))
+ auto-save-list-file-prefix      "~/.local/state/emacs/auto-saves/")
+
+;;; package
 (require 'package)
 (setopt package-user-dir "~/.local/share/emacs/elpa/")
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
 
-;;; Use-Package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
 (require 'use-package)
 (setopt use-package-always-ensure t)
 
-;;; Recentf and Savehist
+;;; history
 (use-package recentf
   :custom
   (recentf-save-file "~/.local/state/emacs/recentf")
+  (recentf-keep '(file-remote-p file-readable-p))
   (recentf-max-saved-items 1000)
   (recentf-auto-cleanup 'never)
   :config
-  (global-set-key (kbd "C-x C-r") 'recentf)
   (recentf-mode))
 
 (use-package savehist
@@ -65,7 +65,7 @@
   :config
   (savehist-mode))
 
-;;; Minibuffer Completion System
+;;; minibuffer completion
 (use-package vertico
   :custom
   (vertico-count 20)
@@ -81,13 +81,22 @@
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  (completion-category-overrides
+   '((file (styles basic partial-completion))
+     (recentf (styles basic)))))
 
 (use-package marginalia
   :config
   (marginalia-mode))
 
-;;; DDSKK
+(use-package consult
+  :custom
+  (consult-preview-key nil)
+  :bind
+  ("C-x C-r" . consult-recent-file)
+  ("C-x b"   . consult-buffer))
+
+;;; japanese input
 (use-package ddskk
   :custom
   (skk-user-directory "~/.local/share/emacs/skk/")
@@ -95,12 +104,12 @@
   (skk-cursor-hiragana-color "pink")
   (skk-dcomp-activate t)
   :bind
-  ("C-x j" . 'skk-mode)
+  ("C-x j" . skk-mode)
   :hook
-  (isearch-mode . skk-isearch-mode-setup)
+  (isearch-mode     . skk-isearch-mode-setup)
   (isearch-mode-end . skk-isearch-mode-cleanup))
 
-;;; Doom-Themes
+;;; theme and modeline
 (use-package doom-themes
   :custom
   (doom-themes-enable-bold t)
@@ -108,17 +117,17 @@
   :config
   (load-theme 'doom-dracula t))
 
-;;; Doom-Modeline
 (use-package doom-modeline
   :custom
   (doom-modeline-icon nil)
   :config
   (doom-modeline-mode))
 
-;;; Init-Loader
+;;; extra inits
 (use-package init-loader
   :custom
   (init-loader-directory (locate-user-emacs-file "inits/"))
   (init-loader-show-log-after-init 'error-only)
   :config
-  (when (file-directory-p init-loader-directory) (init-loader-load)))
+  (when (file-directory-p init-loader-directory)
+    (init-loader-load)))
