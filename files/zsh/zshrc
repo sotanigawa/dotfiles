@@ -28,6 +28,7 @@ alias rm='rm -i'
 alias mkdir='mkdir -p'
 alias sudo='sudo '
 alias vim='nvim'
+alias unoconv='libreoffice --headless --convert-to pdf'
 
 bindkey -e
 
