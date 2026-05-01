@@ -1,42 +1,51 @@
 export EDITOR=nvim
 export PAGER=less
 
+# History
 HISTFILE=~/.local/state/zsh/history
 HISTSIZE=100000
 SAVEHIST=100000
+
+# Options
+setopt auto_cd auto_pushd pushd_ignore_dups
+setopt extended_history hist_ignore_all_dups hist_ignore_space hist_reduce_blanks share_history
+setopt interactive_comments
+
+# Prompt
 PROMPT='[%~]%# '
 RPROMPT='[%?]'
 
-autoload -Uz compinit && compinit -d ~/.cache/zsh/compdump
-autoload -Uz colors && colors
-
+# Completion
+mkdir -p ~/.local/state/zsh ~/.cache/zsh
+autoload -Uz compinit
+if [[ $(find ~/.cache/zsh/compdump -mtime +1 2>/dev/null) ]]; then
+    compinit -d ~/.cache/zsh/compdump
+else
+    compinit -C -d ~/.cache/zsh/compdump
+fi
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
-setopt auto_cd
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt share_history
-setopt interactive_comments
+autoload -Uz colors && colors
 
-alias ls='ls --color=auto'
-alias grep="grep --color=auto"
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-alias mkdir='mkdir -p'
-alias sudo='sudo '
-alias vim='nvim'
-alias unoconv='libreoffice --headless --convert-to pdf'
-
+# Key bindings
 bindkey -e
-
 if type fzf > /dev/null 2>&1; then
     function select-history() {
         BUFFER=$(history -n -r 1 | fzf +s +m -q "$LBUFFER")
         CURSOR=$#BUFFER
+        zle reset-prompt
     }
     zle -N select-history
     bindkey '^r' select-history
 fi
+
+# Aliases
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias sudo='sudo '
+alias mkdir='mkdir -p'
+alias vim='nvim'
+alias unoconv='libreoffice --headless --convert-to pdf'
