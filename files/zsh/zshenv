@@ -7,6 +7,7 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 
 export EDITOR=nvim
-export PAGER=less
+export PAGER=bat
+export BAT_PAGER="less -R"
 
 [[ -f "$ZDOTDIR/.zshenv.local" ]] && source "$ZDOTDIR/.zshenv.local"
