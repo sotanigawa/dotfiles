@@ -45,9 +45,10 @@ create_symlink "$files/emacs/init.el"            "$HOME/.config/emacs/init.el"
 create_symlink "$files/git/config"               "$HOME/.config/git/config"
 create_symlink "$files/nvim/init.lua"            "$HOME/.config/nvim/init.lua"
 create_symlink "$files/ranger/rifle.conf"        "$HOME/.config/ranger/rifle.conf"
-create_symlink "$files/stumpwm/init.lisp"        "$HOME/.stumpwm.d/init.lisp"
-create_symlink "$files/X11/xinitrc"              "$HOME/.xinitrc"
+create_symlink "$files/stumpwm/config"           "$HOME/.config/stumpwm/config"
+create_symlink "$files/X11/xinitrc"              "$HOME/.config/X11/xinitrc"
 create_symlink "$files/X11/Xresources"           "$HOME/.config/X11/Xresources"
-create_symlink "$files/zsh/zshrc"                "$HOME/.zshrc"
+create_symlink "$files/zsh/zshenv"               "$HOME/.zshenv"
+create_symlink "$files/zsh/zshrc"                "$HOME/.config/zsh/.zshrc"
 
 ranger_rc_conf_setup

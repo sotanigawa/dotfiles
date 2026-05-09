@@ -1,6 +1,10 @@
+;; -*- mode: lisp -*-
+
 (in-package :stumpwm)
 
-(setf *message-window-gravity* :center
+(setf *config-dir* (uiop:xdg-config-home #P"stumpwm/")
+      *data-dir* (uiop:xdg-data-home #P"stumpwm/")
+      *message-window-gravity* :center
       *input-window-gravity* :center
       *window-border-style* :thin
       *mouse-focus-policy* :click
@@ -27,4 +31,4 @@
 
 (set-font "-*-terminus-medium-*-*--14-*-*-*-*-*-*-*")
 
-(load (merge-pathnames #P"init-local.lisp" *data-dir*) :if-does-not-exist nil)
+(load (merge-pathnames #P"config-local" *config-dir*) :if-does-not-exist nil)
