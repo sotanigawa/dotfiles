@@ -28,6 +28,7 @@ create_symlink() {
 files="$(cd "$(dirname "$0")"; pwd)/files"
 
 create_symlink "$files/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+create_symlink "$files/alacritty/dracula.toml"   "$HOME/.config/alacritty/dracula.toml"
 create_symlink "$files/emacs/init.el"            "$HOME/.config/emacs/init.el"
 create_symlink "$files/git/config"               "$HOME/.config/git/config"
 create_symlink "$files/nvim/init.lua"            "$HOME/.config/nvim/init.lua"
