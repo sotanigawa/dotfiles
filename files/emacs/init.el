@@ -21,7 +21,7 @@
 
 ;;; fonts and faces
 (custom-set-faces
- '(default ((t (:family "Cica" :height 140)))))
+ '(default ((t (:family "UDEV Gothic" :height 120)))))
 
 ;;; keymaps
 (global-set-key (kbd "C-h")   'delete-backward-char)

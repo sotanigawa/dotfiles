@@ -4,24 +4,24 @@ import = ["~/.config/alacritty/dracula.toml"]
 
 [font]
 
-size = 16.0
+size = 12.0
 
 [font.normal]
 
-family = "Cica"
+family = "UDEV Gothic"
 style = "Regular"
 
 [font.bold]
 
-family = "Cica"
+family = "UDEV Gothic"
 style = "Bold"
 
 [font.italic]
 
-family = "Cica"
+family = "UDEV Gothic"
 style = "Italic"
 
 [font.bold_italic]
 
-family = "Cica"
+family = "UDEV Gothic"
 style = "Bold Italic"
