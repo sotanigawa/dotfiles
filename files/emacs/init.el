@@ -2,9 +2,6 @@
 (setopt custom-file (locate-user-emacs-file "custom.el"))
 
 ;;; ui
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
 (tab-bar-mode 1)
 (global-hl-line-mode 1)
 (global-display-line-numbers-mode 1)
@@ -42,12 +39,10 @@
 
 ;;; package
 (require 'package)
-(setopt package-user-dir "~/.local/share/emacs/elpa/")
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-
-(require 'use-package)
-(setopt use-package-always-ensure t)
+(use-package use-package
+  :custom
+  (use-package-always-ensure t))
 
 ;;; history
 (use-package recentf
