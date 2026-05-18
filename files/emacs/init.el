@@ -24,6 +24,8 @@
 (global-set-key (kbd "C-h")   'delete-backward-char)
 (global-set-key (kbd "C-M-p") 'backward-paragraph)
 (global-set-key (kbd "C-M-n") 'forward-paragraph)
+(global-set-key (kbd "C-x t c") 'tab-bar-new-tab)
+(global-set-key (kbd "C-x t k") 'tab-bar-close-tab)
 
 ;;; editing
 (setopt
