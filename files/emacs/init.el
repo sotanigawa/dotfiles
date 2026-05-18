@@ -21,11 +21,11 @@
  '(default ((t (:family "UDEV Gothic" :height 120)))))
 
 ;;; keymaps
-(global-set-key (kbd "C-h")   'delete-backward-char)
-(global-set-key (kbd "C-M-p") 'backward-paragraph)
-(global-set-key (kbd "C-M-n") 'forward-paragraph)
-(global-set-key (kbd "C-x t c") 'tab-bar-new-tab)
-(global-set-key (kbd "C-x t k") 'tab-bar-close-tab)
+(keymap-global-set "C-h"     #'delete-backward-char)
+(keymap-global-set "C-M-p"   #'backward-paragraph)
+(keymap-global-set "C-M-n"   #'forward-paragraph)
+(keymap-global-set "C-x t c" #'tab-bar-new-tab)
+(keymap-global-set "C-x t k" #'tab-bar-close-tab)
 
 ;;; editing
 (setopt
@@ -42,9 +42,7 @@
 ;;; package
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(use-package use-package
-  :custom
-  (use-package-always-ensure t))
+(setopt use-package-always-ensure t)
 
 ;;; history
 (use-package recentf
