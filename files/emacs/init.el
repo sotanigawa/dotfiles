@@ -1,5 +1,5 @@
 ;;; early settings
-(setopt custom-file (locate-user-emacs-file "custom.el"))
+(setopt custom-file null-device)
 
 ;;; ui
 (tab-bar-mode 1)
