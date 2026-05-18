@@ -1,27 +1,30 @@
 [general]
-
 import = ["~/.config/alacritty/dracula.toml"]
 
 [font]
-
 size = 12.0
 
 [font.normal]
-
 family = "UDEV Gothic"
 style = "Regular"
 
 [font.bold]
-
 family = "UDEV Gothic"
 style = "Bold"
 
 [font.italic]
-
 family = "UDEV Gothic"
 style = "Italic"
 
 [font.bold_italic]
-
 family = "UDEV Gothic"
 style = "Bold Italic"
+
+[[hints.enabled]]
+action = "copy"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "O", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
