@@ -42,7 +42,9 @@
 ;;; package
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(setopt use-package-always-ensure t)
+(use-package use-package
+  :custom
+  (use-package-always-ensure t))
 
 ;;; history
 (use-package recentf
