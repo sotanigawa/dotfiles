@@ -16,11 +16,7 @@ RPROMPT='[%?]'
 
 # Completion
 autoload -Uz compinit
-if [[ $(find ~/.cache/zsh/compdump -mtime +1 2>/dev/null) ]]; then
-    compinit -d ~/.cache/zsh/compdump
-else
-    compinit -C -d ~/.cache/zsh/compdump
-fi
+compinit -d ~/.cache/zsh/compdump
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
 # Colors
