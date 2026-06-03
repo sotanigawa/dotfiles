@@ -21,13 +21,13 @@ family = "UDEV Gothic"
 style = "Bold Italic"
 
 [[hints.enabled]]
-action = "copy"
-hyperlinks = true
-post_processing = true
-persist = false
-mouse.enabled = true
-binding = { key = "O", mods = "Control|Shift" }
-regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
+  action = "copy"
+  hyperlinks = true
+  post_processing = true
+  persist = false
+  mouse.enabled = true
+  binding = { key = "O", mods = "Control|Shift" }
+  regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
 
 [keyboard]
 bindings = [
