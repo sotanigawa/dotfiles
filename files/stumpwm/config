@@ -71,6 +71,8 @@
     "f" "fullscreen")
 
 (define-keys-in *tile-group-root-map*
+    "SPC" "pull-hidden-next"
+    "BackSpace" "pull-hidden-previous"
     "h" "move-focus left"
     "j" "move-focus down"
     "k" "move-focus up"
