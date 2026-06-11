@@ -1,4 +1,5 @@
-;;; -*- Mode: Common-Lisp -*-
+;;; -*- mode: lisp -*-
+
 (in-package :stumpwm)
 
 (setf *config-dir* (uiop:xdg-config-home #P"stumpwm/")

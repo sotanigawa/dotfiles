@@ -1,3 +1,5 @@
+# -*- mode: sh -*-
+
 mkdir -p ~/.cache/zsh ~/.local/state/zsh
 
 # History

@@ -1,3 +1,5 @@
+# -*- mode: sh -*-
+
 xset s off -dpms
 
 xrdb -merge ~/.config/X11/Xresources
