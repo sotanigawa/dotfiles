@@ -134,11 +134,6 @@
   :config
   (doom-modeline-mode))
 
-;;; extra inits
-(use-package init-loader
-  :custom
-  (init-loader-directory (locate-user-emacs-file "inits/"))
-  (init-loader-show-log-after-init 'error-only)
-  :config
-  (when (file-directory-p init-loader-directory)
-    (init-loader-load)))
+;;; local inits
+(with-demoted-errors "init-local: %S"
+  (load (locate-user-emacs-file "init-local") t t))
