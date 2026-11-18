@@ -96,16 +96,23 @@
 
 ;;; japanese input
 (use-package ddskk
+  :preface
+  (defun my/skk-latin-on ()
+    (skk-mode 1)
+    (skk-latin-mode 1))
+  (defun my/skk-latin-on-all-buffers ()
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf (my/skk-latin-on))))
   :custom
   (skk-user-directory "~/.local/share/emacs/skk/")
   (skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
   (skk-cursor-hiragana-color "pink")
   (skk-dcomp-activate t)
-  :bind
-  ("C-x j" . skk-mode)
   :hook
-  (isearch-mode     . skk-isearch-mode-setup)
-  (isearch-mode-end . skk-isearch-mode-cleanup))
+  (isearch-mode            . skk-isearch-mode-setup)
+  (isearch-mode-end        . skk-isearch-mode-cleanup)
+  (after-change-major-mode . my/skk-latin-on)
+  (emacs-startup           . my/skk-latin-on-all-buffers))
 
 ;;; theme and modeline
 (use-package doom-themes
