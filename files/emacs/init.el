@@ -54,7 +54,6 @@
   (recentf-save-file "~/.local/state/emacs/recentf")
   (recentf-keep '(file-remote-p file-readable-p))
   (recentf-max-saved-items 1000)
-  (recentf-auto-cleanup 'never)
   :config
   (recentf-mode))
 
