@@ -96,5 +96,8 @@
     "C-m" 'input-submit
     "C-h" 'input-delete-backward-char)
 
+(define-keys-in *menu-map*
+    "C-m" 'menu-finish)
+
 ;;; Extra Configs
 (load (merge-pathnames #P"config-local" *config-dir*) :if-does-not-exist nil)
