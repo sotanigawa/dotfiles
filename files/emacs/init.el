@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;;; early settings
 (setopt custom-file null-device)
 

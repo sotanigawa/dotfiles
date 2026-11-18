@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 ;;; ui
 (setq default-frame-alist
       '((menu-bar-lines . 0)
