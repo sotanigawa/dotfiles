@@ -12,4 +12,6 @@ export XMODIFIERS=@im=fcitx
 
 fcitx5 --replace -d
 
+[ -f ~/.config/X11/xinitrc-local ] && . ~/.config/X11/xinitrc-local
+
 exec stumpwm
