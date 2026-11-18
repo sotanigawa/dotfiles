@@ -108,6 +108,12 @@
   (skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
   (skk-cursor-hiragana-color "pink")
   (skk-dcomp-activate t)
+  :init
+  (with-eval-after-load 'skk-isearch
+    ;; Don't add a newline (^J) to the search string when pressing C-j during isearch
+    (define-advice skk-isearch-newline (:around (orig &rest args) no-newline)
+      (cl-letf (((symbol-function 'isearch-printing-char) #'ignore))
+        (apply orig args))))
   :hook
   (isearch-mode            . skk-isearch-mode-setup)
   (isearch-mode-end        . skk-isearch-mode-cleanup)
