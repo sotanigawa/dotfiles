@@ -19,7 +19,7 @@ RPROMPT='%(?..%F{red}[%?]%f)'
 # Completion
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/compdump
-zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' '+l:|=* r:|=*'
 
 # Key bindings
 bindkey -e
