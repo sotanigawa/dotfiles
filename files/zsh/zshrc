@@ -13,8 +13,8 @@ setopt extended_history hist_ignore_all_dups hist_ignore_space hist_reduce_blank
 setopt interactive_comments
 
 # Prompt
-PROMPT='[%~]%# '
-RPROMPT='[%?]'
+PROMPT='[%F{green}%~%f]%# '
+RPROMPT='%(?..%F{red}[%?]%f)'
 
 # Completion
 autoload -Uz compinit
