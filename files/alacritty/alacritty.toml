@@ -8,18 +8,6 @@ size = 12.0
 family = "UDEV Gothic"
 style = "Regular"
 
-[font.bold]
-family = "UDEV Gothic"
-style = "Bold"
-
-[font.italic]
-family = "UDEV Gothic"
-style = "Italic"
-
-[font.bold_italic]
-family = "UDEV Gothic"
-style = "Bold Italic"
-
 [cursor]
 style = { shape = "Block", blinking = "Always" }
 blink_interval = 500
