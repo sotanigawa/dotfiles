@@ -20,6 +20,10 @@ style = "Italic"
 family = "UDEV Gothic"
 style = "Bold Italic"
 
+[cursor]
+style = { shape = "Block", blinking = "Always" }
+blink_interval = 500
+
 [[hints.enabled]]
   action = "copy"
   hyperlinks = true
