@@ -89,7 +89,8 @@
     "C-Left" "move-window left"
     "C-Down" "move-window down"
     "C-Up" "move-window up"
-    "C-Right" "move-window right")
+    "C-Right" "move-window right"
+    "|" "hsplit-uniformly 3")
 
 (define-keys-in *input-map*
     "C-m" 'input-submit
