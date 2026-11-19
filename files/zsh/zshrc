@@ -25,7 +25,7 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' '+l:|=* r:|=*'
 bindkey -e
 
 # Aliases
-alias ls='ls --color=auto'
+alias ls='eza'
 alias grep='grep --color=auto'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -40,7 +40,7 @@ alias unoconv='libreoffice --headless --convert-to pdf'
 source <(fzf --zsh)
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --bind=ctrl-k:kill-line'
 export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
-export FZF_ALT_C_OPTS="--preview 'ls -la --color=always {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --color=always {}'"
 export FZF_CTRL_T_COMMAND='fd --type f --hidden --exclude .git'
 
 # Directory jumping (zoxide)
