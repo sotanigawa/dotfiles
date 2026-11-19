@@ -21,6 +21,13 @@ cd ~/dotfiles
 
 Existing files at the destination are overwritten.
 
-## Credits
+## License
 
-- [Dracula Theme](https://draculatheme.com/) — MIT License © Dracula Theme
+These are my personal dotfiles, tailored to my own environment and
+not intended for general use. They may change at any time without notice.
+
+That said, feel free to use anything you find useful under the
+[MIT License](LICENSE).
+
+`files/alacritty/dracula.toml` is from [Dracula Theme](https://draculatheme.com/)
+and is licensed under the MIT License © Dracula Theme.
