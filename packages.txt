@@ -1,0 +1,50 @@
+# Packages required by these dotfiles.
+# Install with:
+#   sed -e 's/[[:space:]]*#.*//' -e '/^$/d' packages.txt | paru -S --needed -
+
+# X11 / WM
+dmenu
+stumpwm
+xorg-server
+xorg-xinit
+xorg-xrdb
+xorg-xset
+
+# Input method
+fcitx5
+fcitx5-configtool
+fcitx5-gtk
+fcitx5-qt
+fcitx5-skk
+skk-jisyo
+
+# Fonts
+terminus-font
+ttf-udev-gothic  # AUR
+
+# Terminal
+alacritty
+tmux
+
+# Shell
+bat
+eza
+fd
+fzf
+less
+zoxide
+zsh
+
+# Editor
+emacs
+neovim
+
+# File manager
+ranger-git  # AUR
+
+# Media
+mpv
+nsxiv
+
+# Others
+git
