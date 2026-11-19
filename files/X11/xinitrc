@@ -3,7 +3,7 @@
 xset s off -dpms
 
 xrdb -merge ~/.config/X11/Xresources
-[ -f ~/.config/X11/Xresources.local ] && xrdb -merge ~/.config/X11/Xresources.local
+[ -f ~/.config/X11/Xresources-local ] && xrdb -merge ~/.config/X11/Xresources-local
 
 export LANG=ja_JP.UTF-8
 export GTK_IM_MODULE=fcitx

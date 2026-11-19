@@ -12,4 +12,4 @@ export EDITOR=nvim
 export PAGER=bat
 export BAT_PAGER="less -R"
 
-[[ -f "$ZDOTDIR/.zshenv.local" ]] && source "$ZDOTDIR/.zshenv.local"
+[[ -f "$ZDOTDIR/.zshenv-local" ]] && source "$ZDOTDIR/.zshenv-local"
